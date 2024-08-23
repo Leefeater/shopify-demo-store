@@ -18,7 +18,7 @@ export function PaginatedResourceSection({
 
   const sortNodes = (nodes) => {
     // assuming for the challenge we are simply "front end sorting"
-    // in produciton this would simply adjust the query params that fetch the products
+    // in produciton this would simply adjust the query params that fetch the
     switch (sortOption) {
       case 'price-low-high':
         return [...nodes].sort((a, b) =>
