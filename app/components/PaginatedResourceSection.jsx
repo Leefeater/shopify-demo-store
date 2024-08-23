@@ -11,13 +11,14 @@ export function PaginatedResourceSection({
   resourcesClassName,
 }) {
   const [sortOption, setSortOption] = React.useState('featured');
-  const [isLoadingMore, setIsLoadingMore] = React.useState(false);
 
   const handleSortChange = (e) => {
     setSortOption(e.target.value);
   };
 
   const sortNodes = (nodes) => {
+    // assuming for the challenge we are simply "front end sorting"
+    // in produciton this would simply adjust the query params that fetch the products
     switch (sortOption) {
       case 'price-low-high':
         return [...nodes].sort((a, b) =>
@@ -31,36 +32,6 @@ export function PaginatedResourceSection({
       default:
         return nodes;
     }
-  };
-
-  React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isLoadingMore) {
-          setIsLoadingMore(true);
-          loadMore();
-        }
-      },
-      {
-        rootMargin: '200px',
-      }
-    );
-
-    const target = document.querySelector('#load-more-trigger');
-    if (target) {
-      observer.observe(target);
-    }
-
-    return () => {
-      if (target) {
-        observer.unobserve(target);
-      }
-    };
-  }, [isLoadingMore]);
-
-  const loadMore = () => {
-    setIsLoadingMore(true);
-    // Trigger the loading of more items via the Pagination component
   };
 
   return (
@@ -87,7 +58,9 @@ export function PaginatedResourceSection({
             ) : (
               resourcesMarkup
             )}
-            <div id="load-more-trigger" />
+            <NextLink>
+              {isLoading ? 'Loading...' : <span>Load more ↓</span>}
+            </NextLink>
           </div>
         );
       }}
