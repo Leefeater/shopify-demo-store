@@ -484,3 +484,27 @@ button.reset:hover:not(:has(> *)) {
 .account-logout {
   display: inline-block;
 }
+
+/** new styles **/
+
+.product-buttons {
+  display: flex;
+  gap: 10px; /* Space between the buttons */
+  align-items: center; /* Align the buttons vertically */
+}
+
+
+.sorting-controls {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.sorting-controls label {
+  margin-right: 10px;
+}
+
+.sorting-controls select {
+  padding: 5px;
+  font-size: 14px;
+}

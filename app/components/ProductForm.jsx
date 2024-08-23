@@ -1,6 +1,7 @@
 import {Link} from '@remix-run/react';
 import {VariantSelector} from '@shopify/hydrogen';
 import {AddToCartButton} from '~/components/AddToCartButton';
+import ShopPayButtonComponent from '~/components/CustomShopPay';
 import {useAside} from '~/components/Aside';
 
 /**
@@ -22,6 +23,8 @@ export function ProductForm({product, selectedVariant, variants}) {
         {({option}) => <ProductOptions key={option.name} option={option} />}
       </VariantSelector>
       <br />
+      <div className="product-buttons">
+      <ShopPayButtonComponent product={product} />
       <AddToCartButton
         disabled={!selectedVariant || !selectedVariant.availableForSale}
         onClick={() => {
@@ -39,8 +42,10 @@ export function ProductForm({product, selectedVariant, variants}) {
             : []
         }
       >
+        
         {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
       </AddToCartButton>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import {CartForm} from '@shopify/hydrogen';
+import CustomButton from './CustomButton';
 
 /**
  * @param {{
@@ -25,13 +26,12 @@ export function AddToCartButton({
             type="hidden"
             value={JSON.stringify(analytics)}
           />
-          <button
-            type="submit"
+          <CustomButton
             onClick={onClick}
             disabled={disabled ?? fetcher.state !== 'idle'}
           >
             {children}
-          </button>
+          </CustomButton>
         </>
       )}
     </CartForm>
